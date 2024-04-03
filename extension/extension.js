@@ -238,7 +238,7 @@ export default class Controller extends Extension {
             // 'Replace calendar'
             Main.panel.addToStatusArea("hamster", this.panelWidget, 0, "center");
 
-            Main.panel._centerBox.remove_actor(dateMenu.container);
+            Main.panel._centerBox.remove_child(dateMenu.container);
             Main.panel._addToPanelBox('dateMenu', dateMenu, -1, Main.panel._rightBox);
         } else if (placement == 2) {
             // 'Replace activities'
@@ -261,21 +261,21 @@ export default class Controller extends Extension {
     _removeWidget(placement) {
         if (placement == 1) {
             // We replaced the calendar
-            Main.panel._rightBox.remove_actor(dateMenu.container);
+            Main.panel._rightBox.remove_child(dateMenu.container);
             Main.panel._addToPanelBox(
                 'dateMenu',
                 dateMenu,
                 Main.sessionMode.panel.center.indexOf('dateMenu'),
                 Main.panel._centerBox
             );
-            Main.panel._centerBox.remove_actor(this.panelWidget.container);
+            Main.panel._centerBox.remove_child(this.panelWidget.container);
         } else if (placement == 2) {
             // We replaced the 'Activities' menu
             let activitiesMenu = Main.panel._leftBox.get_children()[0].get_children()[0].get_children()[0].get_children()[0];
             activitiesMenu.set_text(this._activitiesText);
-            Main.panel._leftBox.remove_actor(this.panelWidget.container);
+            Main.panel._leftBox.remove_child(this.panelWidget.container);
         } else {
-            Main.panel._rightBox.remove_actor(this.panelWidget.container);
+            Main.panel._rightBox.remove_child(this.panelWidget.container);
         }
     }
 }
