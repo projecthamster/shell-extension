@@ -48,7 +48,7 @@ class TodaysFactsWidget extends St.ScrollView {
             reactive: true
         });
         this.factsBox.add_child(this.facts_widget);
-        this.add_actor(this.factsBox);
+        this.add_child(this.factsBox);
 
     }
 
