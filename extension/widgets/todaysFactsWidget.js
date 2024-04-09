@@ -28,6 +28,7 @@ import GObject from 'gi://GObject';
 
 import { gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
 import * as Stuff from '../stuff.js';
+import * as Config from 'resource:///org/gnome/shell/misc/config.js';
 
 /**
  * A widget that lists all facts for *today*.
@@ -48,7 +49,10 @@ class TodaysFactsWidget extends St.ScrollView {
             reactive: true
         });
         this.factsBox.add_child(this.facts_widget);
-        this.add_actor(this.factsBox);
+        if (Config.PACKAGE_VERSION.substring(0, 2) == "45")
+            this.add_actor(this.factsBox);
+        else
+            this.add_child(this.factsBox);
 
     }
 
