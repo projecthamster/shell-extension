@@ -71,9 +71,13 @@ class FactsBox extends PopupMenu.PopupBaseMenuItem {
         this._scrollAdjustment = this.todaysFactsWidget.vscroll.adjustment;
         main_box.add_child(this.todaysFactsWidget);
 
+        this._settings = controller.settings;
+
         // Setup category summery
-        this.summaryLabel = new CategoryTotalsWidget();
-        main_box.add_child(this.summaryLabel);
+        if (this._settings.get_boolean("show-summary")) {
+            this.summaryLabel = new CategoryTotalsWidget();
+            main_box.add_child(this.summaryLabel);
+        }
         // Setup total time
         this.totalTimeLabel = new TotalTimeWidget();
         main_box.add_child(this.totalTimeLabel);
@@ -86,7 +90,9 @@ class FactsBox extends PopupMenu.PopupBaseMenuItem {
     refresh(facts, ongoingFact) {
         this.todaysFactsWidget.refresh(facts, ongoingFact);
         this.totalTimeLabel.refresh(facts);
-        this.summaryLabel.refresh(facts);
+        if (this._settings.get_boolean("show-summary")) {
+            this.summaryLabel.refresh(facts);
+        }
 
     }
 
